@@ -1,0 +1,24 @@
+{
+  "name": "context-mongodb",
+  "version": "1.0.0",
+  "description": "context database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eoinlynchcodes/context-mongodb.git"
+  },
+  "author": "Eoin Lynch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eoinlynchcodes/context-mongodb/issues"
+  },
+  "homepage": "https://github.com/eoinlynchcodes/context-mongodb#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.19"
+  }
+}
