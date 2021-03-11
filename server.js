@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
-// import userRouter from './routers/userRouter.js';
+import userRouter from './routers/userRouter.js';
 dotenv.config();
 
 let app = express();
@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/firstrest', {
   useCreateIndex: true,
 });
 
-// app.use('/api/users', userRouter);
+app.use('/api/users', userRouter);
 
 app.use((err, req, res, next) => {
     res.status(500).send({ message: err.message });
