@@ -1,12 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import path from 'path';
 import userRouter from './routers/userRouter.js';
 dotenv.config();
 
 let app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/firstrest', {

@@ -19,7 +19,7 @@ userRouter.post('/register', expressAsyncHandler(async (req, res) => {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       username: req.body.username,
-      email: req.body.email,
+      emailaddress: req.body.emailaddress,
       password: bcrypt.hashSync(req.body.password, 8),
     });
     const createdUser = await user.save();
@@ -28,14 +28,14 @@ userRouter.post('/register', expressAsyncHandler(async (req, res) => {
       firstname: createdUser.firstname,
       lastname: createdUser.lastname,
       username: createdUser.username,
-      email: createdUser.email,
+      emailaddress: createdUser.emailaddress,
       token: generateToken(createdUser),
     });
   })
 );
 
 userRouter.post('/login', expressAsyncHandler(async (req, res) => {
-      const user = await User.findOne({ email: req.body.email });
+      const user = await User.findOne({ emailaddress: req.body.emailaddress });
       if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           res.send({
@@ -43,7 +43,7 @@ userRouter.post('/login', expressAsyncHandler(async (req, res) => {
             firstname: user.firstname,
             lastname: user.lastname,
             username: user.username,
-            email: user.email,
+            emailaddress: user.emailaddress,
             token: generateToken(user),
           });
           return;
