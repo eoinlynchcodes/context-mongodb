@@ -27,12 +27,18 @@ meetingRouter.post("/", expressAsyncHandler(async( req, res) => {
     res.status(201).send({message: 'Meeting Scheduled', meeting: newmeeting });
 }))
 
-// Display meetings started by a specific user
-meetingRouter.get('/:id', expressAsyncHandler(async (req, res) => {
-    
-}))
-
 // Delete a specific meeting
+meetingRouter.delete('/:id', expressAsyncHandler(async (req, res) => {
+    const meetingtodelete = await Meeting.findById(req.params.id);
+    if(meetingtodelete){
+        const deletedmeeting = await meetingtodelete.remove();
+        res.send({ message: 'Meeting Deleted', meetingtodelete: deletedmeeting });
+    } else {
+        res.status(404).send({ message: 'Meeting not found.' });
+    }
+}));
+
+// Display meetings started by a specific user
 meetingRouter.delete('/:id', expressAsyncHandler(async( req, res) => {
 
 }))
