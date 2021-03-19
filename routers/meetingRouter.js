@@ -24,7 +24,7 @@ meetingRouter.post("/", expressAsyncHandler(async( req, res) => {
         inputs: req.body.inputs,
     });
     const newmeeting = await meeting.save();
-    res.status(201).send({message: 'New Order Created', meeting: newmeeting });
+    res.status(201).send({message: 'Meeting Scheduled', meeting: newmeeting });
 }))
 
 // Display meetings started by a specific user
