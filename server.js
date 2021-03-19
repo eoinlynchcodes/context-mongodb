@@ -3,7 +3,10 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
+
 import userRouter from './routers/userRouter.js';
+import meetingRouter from './routers/meetingRouter.js';
+
 dotenv.config();
 
 let app = express();
@@ -18,6 +21,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/firstrest', {
 });
 
 app.use('/api/users', userRouter);
+app.use('/api/meetings', meetingRouter);
 
 app.use((err, req, res, next) => {
     res.status(500).send({ message: err.message });
