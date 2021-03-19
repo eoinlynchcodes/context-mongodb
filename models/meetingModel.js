@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const meetingSchema = new mongoose.Schema({
-    starteruserid = { type: Number, required: true },
+    starteruserid: { type: Number, required: true },
     date: {type: Date, default: Date.now },
     starttime: { type: String, required: true },
     endtime: { type: String, required: true },

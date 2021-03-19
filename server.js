@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import path from 'path';
+// import path from 'path';
 
 import userRouter from './routers/userRouter.js';
 import meetingRouter from './routers/meetingRouter.js';

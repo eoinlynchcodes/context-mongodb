@@ -27,7 +27,14 @@ meetingRouter.post("/", expressAsyncHandler(async( req, res) => {
     res.status(201).send({message: 'New Order Created', meeting: newmeeting });
 }))
 
-// Delete 
-meetingRouter.delete()
+// Display meetings started by a specific user
+meetingRouter.get('/:id', expressAsyncHandler(async (req, res) => {
+    
+}))
+
+// Delete a specific meeting
+meetingRouter.delete('/:id', expressAsyncHandler(async( req, res) => {
+
+}))
 
 export default meetingRouter;
