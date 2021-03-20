@@ -1,6 +1,7 @@
 import express from 'express';
 import expressAsyncHandler from "express-async-handler";
 import Meeting from '../models/meetingModel.js';
+import User from '../models/userModel.js';
 
 
 const meetingRouter = express.Router();
@@ -13,7 +14,7 @@ meetingRouter.get("/", expressAsyncHandler(async (req, res) => {
 
 meetingRouter.post("/", expressAsyncHandler(async( req, res) => {
     const meeting = new Meeting({
-        starteruserid: req.body.starteruserid,
+        userid: req.body.userid,
         date: req.body.date,
         starttime: req.body.starttime,
         endtime: req.body.endtime,
@@ -27,6 +28,17 @@ meetingRouter.post("/", expressAsyncHandler(async( req, res) => {
     res.status(201).send({message: 'Meeting Scheduled', meeting: newmeeting });
 }))
 
+// Display meetings started by a specific user
+// There should be multiple. This should return an array. 
+meetingRouter.get('/:id', expressAsyncHandler(async( req, res) => {
+    const usersmeetings = await Meeting.find({userid: req.body.userid });
+    if(usersmeetings){
+        res.status(200).send(usersmeetings);
+    } else {
+        res.status(404).send({ message: "Meeting not in database." });
+    }
+}));
+
 // Delete a specific meeting
 meetingRouter.delete('/:id', expressAsyncHandler(async (req, res) => {
     const meetingtodelete = await Meeting.findById(req.params.id);
@@ -37,10 +49,5 @@ meetingRouter.delete('/:id', expressAsyncHandler(async (req, res) => {
         res.status(404).send({ message: 'Meeting not found.' });
     }
 }));
-
-// Display meetings started by a specific user
-meetingRouter.delete('/:id', expressAsyncHandler(async( req, res) => {
-
-}))
 
 export default meetingRouter;
