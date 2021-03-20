@@ -1,2 +1,2 @@
-web: npm start
+web: node --experimental-modules server.js
  

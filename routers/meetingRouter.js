@@ -1,7 +1,6 @@
 import express from 'express';
 import expressAsyncHandler from "express-async-handler";
 import Meeting from '../models/meetingModel.js';
-import User from '../models/userModel.js';
 
 
 const meetingRouter = express.Router();
