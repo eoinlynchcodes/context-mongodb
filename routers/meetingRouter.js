@@ -31,8 +31,7 @@ meetingRouter.post("/", expressAsyncHandler(async( req, res) => {
 // There should be multiple. This should return an array. 
 meetingRouter.get('/:id', expressAsyncHandler(async( req, res) => {
     const useridtopass = req.params.id;
-    console.log(useridtopass);
-    const usersmeetings = await Meeting.findOne({ userid: useridtopass});
+    const usersmeetings = await Meeting.find({ userid: useridtopass});
     if(usersmeetings){
         res.status(200).send(usersmeetings);
     } else {
