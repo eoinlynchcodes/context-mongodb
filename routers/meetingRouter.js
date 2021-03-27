@@ -30,8 +30,9 @@ meetingRouter.post("/", expressAsyncHandler(async( req, res) => {
 // Display meetings started by a specific user
 // There should be multiple. This should return an array. 
 meetingRouter.get('/:id', expressAsyncHandler(async( req, res) => {
-    const userID = req.params;
-    const usersmeetings = await Meeting.find(userID);
+    const useridtopass = req.params.id;
+    console.log(useridtopass);
+    const usersmeetings = await Meeting.findOne({ userid: useridtopass});
     if(usersmeetings){
         res.status(200).send(usersmeetings);
     } else {
